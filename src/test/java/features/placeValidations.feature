@@ -10,8 +10,9 @@ Feature: Validating Place API's
 
     Examples:
     |name|language|address|
-    |  bit scz  |English |tiluchis 2024 |
-#    | bit cbba  |spanish |sucre 933     |
+#    |  bit scz  |English |tiluchis 2024 |
+#   to work with hashMap excel driven use
+   | addPlace  |spanish |sucre 933     |
 
 @DeletePlace @Regression
     Scenario: Verify if delete place functionality is working

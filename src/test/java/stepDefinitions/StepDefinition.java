@@ -16,6 +16,7 @@ import resources.APIResources;
 import resources.TestDataBuild;
 import resources.Utils;
 import java.io.IOException;
+import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
@@ -43,8 +44,13 @@ public class StepDefinition extends Utils {
                         .expectContentType(ContentType.JSON)
                         .build();//applies to responseSpecification too
         */
+        //HashMap<String, Object> place = data.addPlaceHashMapExcelDriven();
+        //System.out.println("place content: "+place.get("name").toString());
         givenSpecs=  given().spec(requestSpecification())
-                .body(data.addPlacePayload(name, language, address));
+                //.body(data.addPlacePayload(name, language, address));
+        // tu use data from excel parsing to hash map object use the follow
+        .body(data.addPlaceHashMapExcelDriven());
+
         //place= data.addPlacePayload(name, language, address);
     }
 

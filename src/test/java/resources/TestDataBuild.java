@@ -3,7 +3,9 @@ package resources;
 import POJO.AddPlace;
 import POJO.Location;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class TestDataBuild {
@@ -31,7 +33,35 @@ public class TestDataBuild {
         return pojoPlace;
     }
 
+    public HashMap<String, Object> addPlaceHashMapExcelDriven() throws IOException {
+
+        ApiExcelDriven scraper = new ApiExcelDriven();
+        ArrayList<String> data= scraper.getData("addPlace");
+
+        HashMap<String, Object> place = new HashMap<>();
+        place.put("name", data.get(0));
+        place.put("accuracy", data.get(5));
+        place.put("phone_number", data.get(8));
+        place.put("address", data.get(6));
+        place.put("website", data.get(9));
+        place.put("language", data.get(10));
+
+        HashMap<String, Object> coordenates = new HashMap<>();
+        coordenates.put("lat",data.get(1) );
+        coordenates.put("lng",data.get(2) );
+        place.put("location", coordenates);
+
+        List<String> types = new ArrayList<>();
+        types.add(data.get(3));
+        types.add(data.get(4));
+        place.put("types", types);
+
+        return place;
+    }
+
     public String deletePlacePayload(String placeId){
         return "{\r\n    \"place_id\":\""+placeId+"\"\r\n}";
     }
+
+
 }
